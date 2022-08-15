@@ -1,0 +1,51 @@
+# histogram 
+p <- ggplot(movies, aes(x=rating)) + geom_histogram(binwidth = 0.1, color="black", fill = "pink", alpha = 0.4) +
+  xlab("Movie Rating") + ylab("Count") + ggtitle("Movie Rating Chart")
+p
+
+# scatter plot with size and alpha
+mt <- mtcars
+a <- ggplot(mt, aes(y = wt, x = mpg)) + geom_point(alpha=5, size = 3)
+a
+
+# scatter plot with aesthetics - change size of dot based on displacement
+mt <- mtcars
+a <- ggplot(mt, aes(y = mpg, x = wt)) + geom_point(aes(size=disp))
+a
+
+# scatter plot with aesthetics and factor - Displays MPG/weight plus dot size and color for cylinder
+mt <- mtcars
+a <- ggplot(mt, aes(y = mpg, x = wt)) + geom_point(aes(size=factor(cyl), color=factor(cyl)))
+a
+
+# barpot
+bar <- mpg
+pl <- ggplot(bar, aes(x=class))
+pl + geom_bar()
+
+# barplot with stacked colors to show Front whee, Rear wheel, or 4x4
+bar <- mpg
+pl <- ggplot(bar, aes(x=class))
+pl + geom_bar(aes(fill = drv))
+
+# barplot with stacked colors and change position (dodge or fill)
+bar <- mpg
+pl <- ggplot(bar, aes(x=class))
+pl + geom_bar(aes(fill = drv),position = "dodge")
+
+# Box plot cylinder vs mpg
+df <- mtcars
+c <- ggplot(df, aes(factor(x = cyl), y = mpg))
+c + geom_boxplot(aes(fill = factor(cyl)))
+
+# Variable plots 2d bin plot
+m <- ggplot(movies, aes(x = year, y = rating))
+m + geom_bin2d() + scale_fill_gradient(high = "red", low ="blue")
+
+# variable plots hex bin
+r <- ggplot(movies, aes(x = year, y = rating))
+r + geom_hex() + scale_fill_gradient(high = "red", low ="blue")
+
+# variable plot 2d density plot
+r <- ggplot(movies, aes(x = year, y = rating))
+r + geom_density2d()
